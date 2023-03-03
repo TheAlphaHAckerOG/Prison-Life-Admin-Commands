@@ -1358,6 +1358,8 @@ local function executeCmd(cmd, args)
 				log('[ ❌ ]: No player found') 
 			end
 		end
+	elseif cmd == 'noleftarm' then
+		game:GetService("Players").LocalPlayer.Character["Left Arm"]:Destroy()
 	elseif cmd == 'unwhitelist' or cmd == 'unwl' then
 		if args[1] then
 			local plr = getPlr(args[1])
@@ -1370,7 +1372,7 @@ local function executeCmd(cmd, args)
 						log('[ ✅ ]: Unwhitelisted '..plrName(plr))
 						notif(' Unwhitelisted '..plrName(plr))
 					else 
-						log('[ ❌ ]: Already unwhitelisted '..plrName(plr)) 
+						log('[ ❌ ]: Already unwhitelisted '..plrName(plr))
 						notif(' Already unwhitelisted '..plrName(plr))
 					end
 				else 
@@ -1825,22 +1827,6 @@ local function executeCmd(cmd, args)
 			Toggles.ClickArrest = false
 			log('[ ✅ ]: Disabled click arrest')
 		else log('[ ❌ ]: Already disabled click arrest') end
-	elseif cmd == 'noleftarm' then
-		game:GetService("Players").LocalPlayer.Character["Left Arm"]:Destroy()
-			log('[ ✅ ]: Removed left arm')
-		else log('[ ❌ ]: Failed to remove left arm') end
-	elseif cmd == 'norightarm' then
-		game:GetService("Players").LocalPlayer.Character["Right Arm"]:Destroy()
-			log('[ ✅ ]: Removed right arm')
-		else log('[ ❌ ]: Failed to remove right arm') end
-	elseif cmd == 'noleftleg' then
-		game:GetService("Players").LocalPlayer.Character["Left Leg"]:Destroy()
-			log('[ ✅ ]: Removed left leg')
-		else log('[ ❌ ]: Failed to remove left leg') end
-	elseif cmd == 'norightleg' then
-		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
-			log('[ ✅ ]: Removed right leg')
-		else log('[ ❌ ]: Failed to remove right leg') end
 	elseif cmd == 'arrestaura' then
 		if not Toggles.ArrestAura then
 			log('[ ✅ ]: Enabled arrest aura')
