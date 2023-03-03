@@ -342,6 +342,7 @@ Cmd[#Cmd + 1] = {Name='noleftarm',Desc="Removes your player's left arm"}
 Cmd[#Cmd + 1] = {Name='norightarm',Desc="Removes your player's right arm"}
 Cmd[#Cmd + 1] = {Name='noleftleg',Desc="Removes your player's left leg"}
 Cmd[#Cmd + 1] = {Name='norightleg',Desc="Removes your player's right leg"}
+Cmd[#Cmd + 1] = {Name='btools',Desc="Gives you client side building tools"}
 Cmd[#Cmd + 1] = {Name='whitelist / wl <plr>',Desc='Whitelist the player from getting tased/killed/arrested and etc.'}
 Cmd[#Cmd + 1] = {Name='unwhitelist / unwl <plr>',Desc='Unwhitelists the player'}
 Cmd[#Cmd + 1] = {Name='getwhitelist / getwl',Desc='Logs whitelisted players in the current server'}
@@ -1370,6 +1371,18 @@ local function executeCmd(cmd, args)
 	elseif cmd == 'norightleg' then
 		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
 	log('[ ✅ ]: Removed right leg')
+	elseif cmd == 'btools' or cmd == 'btool' then
+local tool1 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+local tool2 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+local tool3 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+local tool4 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+local tool5 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+	wait()
+tool1.BinType = "Clone"
+tool2.BinType = "Hammer"
+tool3.BinType = "Grab"
+tool4.BinType = "GameTool"
+tool5.BinType = "Script"
 	elseif cmd == 'unwhitelist' or cmd == 'unwl' then
 		if args[1] then
 			local plr = getPlr(args[1])
