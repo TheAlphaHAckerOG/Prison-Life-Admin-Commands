@@ -1,5 +1,5 @@
 local ver = '1.0' 
-if not game:IsLoaded() then game.Loaded:Wait() end --// Wait for game to load to prevent errors
+if not game:IsLoaded() then game.Loaded:Wait() end 
 --// Services
 local Players = game:GetService('Players')
 local UIS = game:GetService('UserInputService')
@@ -338,6 +338,10 @@ end)
 --\\
 --// Adding commands
 local Cmd = {}
+Cmd[#Cmd + 1] = {Name='noleftarm',Desc='Removes your player's left arm'}
+Cmd[#Cmd + 1] = {Name='norightarm',Desc='Removes your player's right arm'}
+Cmd[#Cmd + 1] = {Name='noleftleg',Desc='Removes your player's left leg}
+Cmd[#Cmd + 1] = {Name='norightleg',Desc='Removes your player's right leg'}
 Cmd[#Cmd + 1] = {Name='whitelist / wl <plr>',Desc='Whitelist the player from getting tased/killed/arrested and etc.'}
 Cmd[#Cmd + 1] = {Name='unwhitelist / unwl <plr>',Desc='Unwhitelists the player'}
 Cmd[#Cmd + 1] = {Name='getwhitelist / getwl',Desc='Logs whitelisted players in the current server'}
@@ -1821,6 +1825,22 @@ local function executeCmd(cmd, args)
 			Toggles.ClickArrest = false
 			log('[ ✅ ]: Disabled click arrest')
 		else log('[ ❌ ]: Already disabled click arrest') end
+	elseif cmd == 'noleftarm' then
+		game:GetService("Players").LocalPlayer.Character["Left Arm"]:Destroy()
+			log('[ ✅ ]: Removed left arm')
+		else log('[ ❌ ]: Failed to remove left arm') end
+	elseif cmd == 'norightarm' then
+		game:GetService("Players").LocalPlayer.Character["Right Arm"]:Destroy()
+			log('[ ✅ ]: Removed right arm')
+		else log('[ ❌ ]: Failed to remove right arm') end
+	elseif cmd == 'noleftleg' then
+		game:GetService("Players").LocalPlayer.Character["Left Leg"]:Destroy()
+			log('[ ✅ ]: Removed left leg')
+		else log('[ ❌ ]: Failed to remove left leg') end
+	elseif cmd == 'norightleg' then
+		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
+			log('[ ✅ ]: Removed right leg')
+		else log('[ ❌ ]: Failed to remove right leg') end
 	elseif cmd == 'arrestaura' then
 		if not Toggles.ArrestAura then
 			log('[ ✅ ]: Enabled arrest aura')
