@@ -1360,6 +1360,16 @@ local function executeCmd(cmd, args)
 		end
 	elseif cmd == 'noleftarm' then
 		game:GetService("Players").LocalPlayer.Character["Left Arm"]:Destroy()
+		log('[ ✅ ]: Removed left arm')
+	elseif cmd == 'norightarm' then
+		game:GetService("Players").LocalPlayer.Character["Right Arm"]:Destroy()
+		log('[ ✅ ]: Removed right arm')
+	elseif cmd == 'noleftleg' then
+		game:GetService("Players").LocalPlayer.Character["Left Leg"]:Destroy()
+	log('[ ✅ ]: Removed left leg')
+	elseif cmd == 'norightleg' then
+		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
+	log('[ ✅ ]: Removed right leg')
 	elseif cmd == 'unwhitelist' or cmd == 'unwl' then
 		if args[1] then
 			local plr = getPlr(args[1])
