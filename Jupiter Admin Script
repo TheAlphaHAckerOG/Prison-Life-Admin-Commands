@@ -338,10 +338,10 @@ end)
 --\\
 --// Adding commands
 local Cmd = {}
-Cmd[#Cmd + 1] = {Name='noleftarm',Desc='Removes your player's left arm'}
-Cmd[#Cmd + 1] = {Name='norightarm',Desc='Removes your player's right arm'}
-Cmd[#Cmd + 1] = {Name='noleftleg',Desc='Removes your player's left leg}
-Cmd[#Cmd + 1] = {Name='norightleg',Desc='Removes your player's right leg'}
+Cmd[#Cmd + 1] = {Name='noleftarm',Desc="Removes your player's left arm"}
+Cmd[#Cmd + 1] = {Name='norightarm',Desc="Removes your player's right arm"}
+Cmd[#Cmd + 1] = {Name='noleftleg',Desc="Removes your player's left leg"}
+Cmd[#Cmd + 1] = {Name='norightleg',Desc="Removes your player's right leg"}
 Cmd[#Cmd + 1] = {Name='whitelist / wl <plr>',Desc='Whitelist the player from getting tased/killed/arrested and etc.'}
 Cmd[#Cmd + 1] = {Name='unwhitelist / unwl <plr>',Desc='Unwhitelists the player'}
 Cmd[#Cmd + 1] = {Name='getwhitelist / getwl',Desc='Logs whitelisted players in the current server'}
