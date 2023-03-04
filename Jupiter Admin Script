@@ -355,6 +355,8 @@ Cmd[#Cmd + 1] = {Name='btools',Desc="Gives you client side building tools"}
 Cmd[#Cmd + 1] = {Name='f3x / fex',Desc="Gives an advanced building tool"}
 Cmd[#Cmd + 1] = {Name='noclip',Desc="Enables your player to walk through walls"}
 Cmd[#Cmd + 1] = {Name='clip',Desc="Disables your player to walk through walls"}
+Cmd[#Cmd + 1] = {Name='fly',Desc="Enables your player to fly"}
+Cmd[#Cmd + 1] = {Name='unfly',Desc="Disables your player to fly"}
 Cmd[#Cmd + 1] = {Name='whitelist / wl <plr>',Desc='Whitelist the player from getting tased/killed/arrested and etc.'}
 Cmd[#Cmd + 1] = {Name='unwhitelist / unwl <plr>',Desc='Unwhitelists the player'}
 Cmd[#Cmd + 1] = {Name='getwhitelist / getwl',Desc='Logs whitelisted players in the current server'}
@@ -1499,29 +1501,23 @@ end
 		game:GetService("Players").LocalPlayer.Character["Left Leg"]:Destroy()
 		wait()
 		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
+	elseif cmd == 'fly' then
+	
+	elseif cmd == 'unfly' then
+	
 	elseif cmd == 'noclip' then
-	local noclipEnabled = true 
-game:GetService("RunService").Stepped:Connect(function()
-	pcall(function()
-		if noclipEnabled then 
-                    game.Players.LocalPlayer.Character:FindFirstChild("Head").CanCollide = false
-                    game.Players.LocalPlayer.Character:FindFirstChild("Torso").CanCollide = false
-                end)
-            end
-        end)
-    end
+	print("working")
+	StatesNoclips = true
+		game:GetService("RunService").Stepped:Connect(function()
+			if StatesNoclips then
+				pcall(function()
+					game.Players.LocalPlayer.Character:FindFirstChild("Head").CanCollide = false
+					game.Players.LocalPlayer.Character:FindFirstChild("Torso").CanCollide = false
+				end)
+			end
+		end)
     	elseif cmd == 'clip' then
-	noclipEnabled = false
-game:GetService("RunService").Stepped:Connect(function()
-	pcall(function()
-		if noclipEnabled == false then 
-                    game.Players.LocalPlayer.Character:FindFirstChild("Head").CanCollide = true
-                    game.Players.LocalPlayer.Character:FindFirstChild("Torso").CanCollide = true
-                end)
-            end
-        end)
-	noclipEnabled = false
-    end
+StatesNoclips = false
 	elseif cmd == 'btools' or cmd == 'btool' then
 local tool1 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
 local tool2 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
