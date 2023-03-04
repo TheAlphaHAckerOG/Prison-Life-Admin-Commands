@@ -338,6 +338,7 @@ end)
 --\\
 --// Adding commands
 local Cmd = {}
+Cmd[#Cmd + 1] = {Name ='dex / explorer',Desc='Loads Dex Explorer'}
 Cmd[#Cmd + 1] = {Name='noleftarm',Desc="Removes your player's left arm"}
 Cmd[#Cmd + 1] = {Name='norightarm',Desc="Removes your player's right arm"}
 Cmd[#Cmd + 1] = {Name='noleftleg',Desc="Removes your player's left leg"}
@@ -1365,6 +1366,8 @@ local function executeCmd(cmd, args)
 	elseif cmd == 'noleftarm' then
 		game:GetService("Players").LocalPlayer.Character["Left Arm"]:Destroy()
 		log('[ ✅ ]: Removed left arm')
+	elseif cmd == 'dex' or cmd == 'explorer' then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/peyton2465/Dex/master/out.lua"))()
 	elseif cmd == 'norightarm' then
 		game:GetService("Players").LocalPlayer.Character["Right Arm"]:Destroy()
 		log('[ ✅ ]: Removed right arm')
