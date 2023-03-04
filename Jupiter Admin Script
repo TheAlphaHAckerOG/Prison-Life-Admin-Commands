@@ -420,9 +420,10 @@ Cmd[#Cmd + 1] = {Name='god / godmode',Desc='Grants immunity via reanimation'}
 Cmd[#Cmd + 1] = {Name='ungod / ungodmode',Desc='Disables god mode'}
 Cmd[#Cmd + 1] = {Name='swatgod',Desc='Grants immunity by spamming swat vest (Guard team only and requires SWAT gamepass)'}
 Cmd[#Cmd + 1] = {Name='unswatgod',Desc='Disables swat god mode'}
-Cmd[#Cmd + 1] = {Name='nodaycycle / unalwaysday',Desc='Disables day cycle'}
-Cmd[#Cmd + 1] = {Name='daycycle / alwaysday / day',Desc='Enables day cycle'}
-Cmd[#Cmd + 1] = {Name='night',Desc='Turns server time into night (Client)'}
+Cmd[#Cmd + 1] = {Name='nodaycycle / unalwaysday',Desc='Turns server time back to default'}
+Cmd[#Cmd + 1] = {Name='daycycle / alwaysday / day',Desc='Enables day cycle (Client)'}
+Cmd[#Cmd + 1] = {Name='alwaysnight/ night',Desc='Turns server time into night (Client)'}
+Cmd[#Cmd + 1] = {Name='unalwaysnight/ unnight',Desc='Turns server time back to default'}
 Cmd[#Cmd + 1] = {Name='showinventory / showinv',Desc='Shows inventory'}
 Cmd[#Cmd + 1] = {Name='autoshowinventory / autoshowinv',Desc='Auto shows inventory'}
 Cmd[#Cmd + 1] = {Name='unautoshowinventory / unautoshowinv',Desc='Disables auto show inventory'}
@@ -1374,8 +1375,19 @@ local function executeCmd(cmd, args)
 		end
 	elseif cmd == 'noleftarm' then
 		game:GetService("Players").LocalPlayer.Character["Left Arm"]:Destroy()
-	elseif cmd == 'night' then
-		Lighting.ClockTime = 0
+	elseif cmd == 'night' or cmd == 'alwaysnight' then
+	Toggles.AlwaysNight = true
+			local func
+			func = RunService.RenderStepped:Connect(function()
+				if not Toggles.AlwaysDay then func:Disconnect() return end
+				Lighting.Brightness = 0
+				Lighting.ClockTime = 0
+				Lighting.FogEnd = 0
+				Lighting.GlobalShadows = true
+				Lighting.OutdoorAmbient = Color3.fromRGB(0, 0, 0)
+			end)
+	elseif cmd == 'unalwaysnight' or cmd == 'unnight' then
+	Toggles.AlwaysNight = false
 	elseif cmd == 'hypertotal' then
 		loadstring(game:GetObjects("rbxassetid://1255063809")[1].Source)()
 	elseif cmd == 'animgui' then
