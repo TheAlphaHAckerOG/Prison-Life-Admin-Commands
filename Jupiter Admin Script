@@ -342,6 +342,9 @@ Cmd[#Cmd + 1] = {Name='noleftarm',Desc="Removes your player's left arm"}
 Cmd[#Cmd + 1] = {Name='norightarm',Desc="Removes your player's right arm"}
 Cmd[#Cmd + 1] = {Name='noleftleg',Desc="Removes your player's left leg"}
 Cmd[#Cmd + 1] = {Name='norightleg',Desc="Removes your player's right leg"}
+Cmd[#Cmd + 1] = {Name='nolegs',Desc="Removes your player's legs"}
+Cmd[#Cmd + 1] = {Name='norarms',Desc="Removes your player's arms"}
+Cmd[#Cmd + 1] = {Name='nolimbs',Desc="Removes your player's limbs, (arms and legs)"}
 Cmd[#Cmd + 1] = {Name='btools',Desc="Gives you client side building tools"}
 Cmd[#Cmd + 1] = {Name='whitelist / wl <plr>',Desc='Whitelist the player from getting tased/killed/arrested and etc.'}
 Cmd[#Cmd + 1] = {Name='unwhitelist / unwl <plr>',Desc='Unwhitelists the player'}
@@ -1371,6 +1374,22 @@ local function executeCmd(cmd, args)
 	elseif cmd == 'norightleg' then
 		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
 	log('[ ✅ ]: Removed right leg')
+	elseif cmd == 'noarms' then
+		game:GetService("Players").LocalPlayer.Character["Left Arm"]:Destroy()
+		wait()
+		game:GetService("Players").LocalPlayer.Character["Right Arm"]:Destroy()
+	elseif cmd == 'nolegs' then
+		game:GetService("Players").LocalPlayer.Character["Left Leg"]:Destroy()
+		wait()
+		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
+	elseif cmd == 'nolimbs' then
+		game:GetService("Players").LocalPlayer.Character["Left Arm"]:Destroy()
+		wait()
+		game:GetService("Players").LocalPlayer.Character["Right Arm"]:Destroy()
+		wait()
+		game:GetService("Players").LocalPlayer.Character["Left Leg"]:Destroy()
+		wait()
+		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
 	elseif cmd == 'btools' or cmd == 'btool' then
 local tool1 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
 local tool2 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
