@@ -1426,16 +1426,16 @@ local function executeCmd(cmd, args)
 			hum2.HipHeight = 0
 		elseif rig == 2 then
 			hum2.HipHeight = 2.19
-		end
-	end
-end)
+
+end
+
 	elseif cmd == 'f3x' or cmd == 'fex' then
 		loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)()
 	elseif cmd == 'dex' or cmd == 'explorer' then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/peyton2465/Dex/master/out.lua", true))()
 	elseif cmd == 'console' then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/console.lua", true))()
-	elsif cmd == 'remotespy' or cmd == 'rspy' then
+	elseif cmd == 'remotespy' or cmd == 'rspy' then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua", true))()
 	elseif cmd == 'audiologger' or cmd == 'alogger' then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/audiologger.lua", true))()
