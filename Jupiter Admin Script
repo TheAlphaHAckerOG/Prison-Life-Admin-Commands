@@ -339,12 +339,8 @@ end)
 --// Adding commands
 local Cmd = {}
 Cmd[#Cmd + 1] = {Name ='dex / explorer',Desc='Loads Dex Explorer'}
-Cmd[#Cmd + 1] = {Name ='console',Desc='Loads up roblox console (Fn + F9)'}
 Cmd[#Cmd + 1] = {Name ='audiologger / alogger',Desc='Opens up audiologger'}
 Cmd[#Cmd + 1] = {Name ='remotespy / rspy',Desc='Loads Remote Spy, FrostHook Spy (Useful for making scripts)'}
-Cmd[#Cmd + 1] = {Name ='hypertotal',Desc='Loads in Hypertotal, a filtering enabled gui'}
-Cmd[#Cmd + 1] = {Name ='animgui',Desc='Loads up Energize Animations Gui'}
-Cmd[#Cmd + 1] = {Name ='opfinality',Desc='Loads up an amazing fe animation gui'}
 Cmd[#Cmd + 1] = {Name ='serverinfo',Desc='Shows the information of your current server'}
 Cmd[#Cmd + 1] = {Name ='xray',Desc='Makes all parts in workspace transparent'}
 Cmd[#Cmd + 1] = {Name ='unxray / noxray',Desc='Restores all transparancy to workspace'}
