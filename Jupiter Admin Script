@@ -1,4 +1,4 @@
-local ver = '1.0' 
+local ver = '1.12' 
 if not game:IsLoaded() then game.Loaded:Wait() end 
 --// Services
 local Players = game:GetService('Players')
@@ -1381,10 +1381,9 @@ local function executeCmd(cmd, args)
 	Toggles.AlwaysNight = true
 			local func
 			func = RunService.RenderStepped:Connect(function()
-				if not Toggles.AlwaysDay then func:Disconnect() return end
+				if not Toggles.AlwaysNight then func:Disconnect() return end
 				Lighting.Brightness = 0
 				Lighting.ClockTime = 0
-				Lighting.FogEnd = 0
 				Lighting.GlobalShadows = true
 				Lighting.OutdoorAmbient = Color3.fromRGB(0, 0, 0)
 			end)
