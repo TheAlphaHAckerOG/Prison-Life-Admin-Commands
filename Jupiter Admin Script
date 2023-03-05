@@ -422,7 +422,7 @@ Cmd[#Cmd + 1] = {Name='god / godmode',Desc='Grants immunity via reanimation'}
 Cmd[#Cmd + 1] = {Name='ungod / ungodmode',Desc='Disables god mode'}
 Cmd[#Cmd + 1] = {Name='swatgod',Desc='Grants immunity by spamming swat vest (Guard team only and requires SWAT gamepass)'}
 Cmd[#Cmd + 1] = {Name='unswatgod',Desc='Disables swat god mode'}
-Cmd[#Cmd + 1] = {Name='nodaycycle / unalwaysday',Desc='Turns server time back to default'}
+Cmd[#Cmd + 1] = {Name='nodaycycle / unalwaysday / unday',Desc='Turns server time back to default'}
 Cmd[#Cmd + 1] = {Name='daycycle / alwaysday / day',Desc='Enables day cycle (Client)'}
 Cmd[#Cmd + 1] = {Name='alwaysnight/ night',Desc='Turns server time into night (Client)'}
 Cmd[#Cmd + 1] = {Name='unalwaysnight/ unnight',Desc='Turns server time back to default'}
@@ -2956,9 +2956,9 @@ tool5.BinType = "Script"
 			Toggles.SwatGodMode = false
 			log('[ ✅ ]: Disabled swat god mode')
 		else log('[ ❌ ]: Already disabled swat god mode') end
-	elseif cmd == 'nodaycycle' or cmd == 'alwaysday' or cmd == 'day' then
+	elseif cmd == 'daycycle' or cmd == 'alwaysday' or cmd == 'day' then
 		if not Toggles.AlwaysDay then
-			log('[ ✅ ]: Disabled day cycle')
+			log('[ ✅ ]: Enabled day cycle')
 			Toggles.AlwaysDay = true
 			local func
 			func = RunService.RenderStepped:Connect(function()
@@ -2970,9 +2970,9 @@ tool5.BinType = "Script"
 				Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
 			end)
 		else log('[ ❌ ]: Already disabled day cycle') end
-	elseif cmd == 'daycycle' or cmd == 'unalwaysday' then
+	elseif cmd == 'nodaycycle' or cmd == 'unalwaysday' or cmd == 'unday' then
 		if Toggles.AlwaysDay then
-			log('[ ✅ ]: Enabled day cycle')
+			log('[ ✅ ]: Disabled day cycle')
 			Toggles.AlwaysDay = false
 		else log('[ ❌ ]: Already enabled day cycle') end
 	elseif cmd == 'showinventory' or cmd == 'showinv' then
