@@ -463,7 +463,7 @@ Cmd[#Cmd + 1] = {Name='superknife / oneshotknife',Desc='Enables or adds super kn
 Cmd[#Cmd + 1] = {Name='unsuperknife / normalknife',Desc='Disables super knife'}
 Cmd[#Cmd + 1] = {Name='hammer [plr]',Desc='Adds hammer to your backpack or give it to a player'}
 Cmd[#Cmd + 1] = {Name='baseballbat / bat',Desc='Adds one shot bat to your backpack'}
-Cmd[#Cmd + 1] = {Name='shield [plr]',Desc='Adds shield to your backpack or give it to a player (Requires SWAT Gamepass)'}
+Cmd[#Cmd + 1] = {Name='shield / riotshield [plr]',Desc='Adds shield to your backpack or give it to a player (Requires SWAT Gamepass)'}
 Cmd[#Cmd + 1] = {Name='antishield / antishields',Desc='Removes shields from other players'}
 Cmd[#Cmd + 1] = {Name='unantishield / unantishields',Desc='Restores shields from other players'}
 Cmd[#Cmd + 1] = {Name='m9 / pistol',Desc='Adds M9 to your backpack'}
@@ -3684,10 +3684,19 @@ tool5.BinType = "Script"
 		for _,v in pairs(tools) do
 			if workspace.Prison_ITEMS.giver:FindFirstChild(v) then
 				toolAvailable = v
+			local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Workspace.Prison_Items.giver[v].ITEMPICKUP.CFrame
 				Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+					wait()
+					Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+						wait()
+					Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
 				break
 			else continue end
 		end
+		
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentCFrame
+		
 		if toolAvailable then
 			if args[1] then
 				local plr = getPlr(args[1])
@@ -4139,30 +4148,101 @@ tool5.BinType = "Script"
 			log('[ ❌ ]: You need the SWAT gamepass to use this command')  
 		end
 	elseif cmd == 'm9' or cmd == 'pistol' then
-		if not user.Character:FindFirstChild('M9') and not user.Backpack:FindFirstChild('M9') then
-			Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['M9'].ITEMPICKUP)
-			log('[ ✅ ]: Obtained M9')
-		else log('[ ❌ ]: You already obtained M9') end
+	local function GiveM9()
+
+local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+local tools = {"M9"}
+		for i,v in pairs(tools) do
+	if game.Workspace.Prison_ITEMS.giver:FindFirstChild(v) then
+				toolAvailable = v
+			
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Prison_ITEMS.giver[v].ITEMPICKUP.CFrame
+	wait()		
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		wait()
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		
+					break
+		else continue end
+	end
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentCFrame
+end
+	GiveM9()
+	
 	elseif cmd == 'remington870' or cmd == 'remington' or cmd == 'reming' or cmd == 'shotgun' then
-		if not user.Character:FindFirstChild('Remington 870') and not user.Backpack:FindFirstChild('Remington 870') then
-			Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['Remington 870'].ITEMPICKUP)
-			log('[ ✅ ]: Obtained Remington 870')
-		else log('[ ❌ ]: You already obtained Remington 870') end
+	local function GiveRemington870()
+
+local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+local tools = {"Remington 870"}
+		for i,v in pairs(tools) do
+	if game.Workspace.Prison_ITEMS.giver:FindFirstChild(v) then
+				toolAvailable = v
+			
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Prison_ITEMS.giver[v].ITEMPICKUP.CFrame
+	wait()		
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		wait()
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		
+					break
+		else continue end
+	end
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentCFrame
+end
+	GiveRemington870()
 	elseif cmd == 'ak47' or cmd == 'ak' then
-		if not user.Character:FindFirstChild('AK-47') and not user.Backpack:FindFirstChild('AK-47') then
-			Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['AK-47'].ITEMPICKUP)
-			log('[ ✅ ]: Obtained AK-47')
-		else log('[ ❌ ]: You already obtained AK-47') end
+	local function GiveAK47()
+
+local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+local tools = {"AK-47"}
+		for i,v in pairs(tools) do
+	if game.Workspace.Prison_ITEMS.giver:FindFirstChild(v) then
+				toolAvailable = v
+			
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Prison_ITEMS.giver[v].ITEMPICKUP.CFrame
+	wait()		
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		wait(.1)
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		
+					break
+		else continue end
+	end
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentCFrame
+end
+	GiveAK47()
+	
 	elseif cmd == 'm4a1' or cmd == 'm4' or cmd == 'ar' then
-		if not user.Character:FindFirstChild('M4A1') and not user.Backpack:FindFirstChild('M4A1') then
-			if SWAT then
-				Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['M4A1'].ITEMPICKUP)
-				log('[ ✅ ]: Obtained M4A1')
-			else 
-				notif('You need the SWAT gamepass to use this command')  
-				log('[ ❌ ]: You need the SWAT gamepass to use this command')  
-			end
-		else log('[ ❌ ]: You already obtained M4A1') end
+	local function GiveM4A1()
+
+local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+local tools = {"M4A1"}
+		for i,v in pairs(tools) do
+	if game.Workspace.Prison_ITEMS.giver:FindFirstChild(v) then
+				toolAvailable = v
+			
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Prison_ITEMS.giver[v].ITEMPICKUP.CFrame
+	wait()		
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		wait()
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		
+					break
+		else continue end
+	end
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentCFrame
+end
+	GiveM4A1()
 	elseif cmd == 'pp' or cmd == 'willy' then
 		if not Toggles.Penis then
 			Toggles.Penis = true
@@ -4227,11 +4307,11 @@ tool5.BinType = "Script"
 		else log('[ ❌ ]: Already disabled penis') end
 	elseif cmd == 'gun' or cmd == 'guns' then
 		local inv = #user.Backpack:GetChildren()
-		Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['M9'].ITEMPICKUP)
-		Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['Remington 870'].ITEMPICKUP)
-		Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['AK-47'].ITEMPICKUP)
+			GiveM9()
+			GiveRemington870()
+			GiveAK47()
 		if SWAT then
-			Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['M4A1'].ITEMPICKUP)
+			GiveM4A1()
 		end
 		if #user.Backpack:GetChildren() ~= inv then
 			log('[ ✅ ]: Obtained all guns')
@@ -4246,10 +4326,10 @@ tool5.BinType = "Script"
 						return user.Character:FindFirstChild(n) or user.Backpack:FindFirstChild(n)
 					end
 
-					if not findTool('M9') then Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['M9'].ITEMPICKUP) end
-					if not findTool('Remington 870') then Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['Remington 870'].ITEMPICKUP) end
-					if not findTool('AK-47') then Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['AK-47'].ITEMPICKUP) end
-					if SWAT and not findTool('M4A1') then Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['M4A1'].ITEMPICKUP) end
+					if not findTool('M9') then GiveM9() end
+					if not findTool('Remington 870') then GiveRemington870() end
+					if not findTool('AK-47') then GiveAK47() end
+					if SWAT and not findTool('M4A1') then GiveM4A1() end
 				end)	
 				RunService.Heartbeat:Wait()
 			until not Toggles.AutoGuns
@@ -5700,7 +5780,7 @@ local function executeRankedCmd(speaker, cmd, args)
 			goToCF(position)
 			chat('/w '..speaker.Name..' [ ✅ ]: Obtained handcuffs')
 		end
-	elseif cmd == 'shield' then
+	elseif cmd == 'shield' or cmd == 'riotshield' then
 		if SWAT then
 			if team ~= 'Bright blue' then
 				chat('/w '..speaker.Name..' [ 🔄 ]: Switching to guard team, please wait...')
@@ -5709,7 +5789,29 @@ local function executeRankedCmd(speaker, cmd, args)
 					RunService.Heartbeat:Wait()
 				until getTeam() == 'Bright blue'
 			end
-			Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver['Riot Shield'].ITEMPICKUP)
+				local function GiveRiotShield()
+
+local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+local tools = {"Riot Shield"}
+		for i,v in pairs(tools) do
+	if game.Workspace.Prison_ITEMS.giver:FindFirstChild(v) then
+				toolAvailable = v
+			
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Prison_ITEMS.giver[v].ITEMPICKUP.CFrame
+	wait()		
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		wait()
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[v].ITEMPICKUP)
+		
+					break
+		else continue end
+	end
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentCFrame
+end
+		GiveRiotShield()
 			if args[1] then
 				local plr = getPlr(args[1])
 				if plr ~= user then
