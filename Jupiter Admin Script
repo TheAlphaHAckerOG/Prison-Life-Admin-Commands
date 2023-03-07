@@ -3929,58 +3929,36 @@ tool5.BinType = "Script"
 			log('[ ✅ ]: Stopped finding key card')
 		else log('[ ❌ ]: Already stopped finding key card') end
 	elseif cmd == 'crudeknife' or cmd == 'knife' or cmd == 'shank' then
-		if args[1] then
-			local plr = getPlr(args[1])
-			if plr then
-				if team ~= 'Bright blue' then
-					Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single['Crude Knife'].ITEMPICKUP)
-				else 
-					Remotes.TeamEvent:FireServer('Medium stone grey')
-					Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single['Crude Knife'].ITEMPICKUP)
-					Remotes.TeamEvent:FireServer('Bright blue')
-				end
-				local char = user.Character
-				char.Humanoid.Name = 'fuck'
-				local c = char.fuck:Clone()
-				c.Name = 'Humanoid'
-				c.Parent = char
-				char.fuck:Destroy()
-				workspace.CurrentCamera.CameraSubject = char
-				char.Animate.Disabled = true
-				wait()
-				char.Animate.Disabled = false
-				char.Humanoid.DisplayDistanceType = 'None'
-				local tool = user.Backpack:FindFirstChild('Crude Knife') or user.Character:FindFirstChild('Crude Knife')
-				tool.Parent = char
-				repeat
-					goTo(plr)
-					RunService.Heartbeat:Wait()
-				until not plr or tool.Parent ~= user.Character
-				wait(.5)
-				goToCF(position)
-				Remotes.loadchar:InvokeServer()
-				goToCF(position)
-				log('[ ✅ ]: Gave knife to '..plrName(plr))
-			else log('[ ❌ ]: No player found') end
-		elseif not user.Character:FindFirstChild('Crude Knife') and not user.Backpack:FindFirstChild('Crude Knife') then
-			local team = getTeam()
-			if team ~= 'Bright blue' then
-				Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single['Crude Knife'].ITEMPICKUP)
-			else 
-				Remotes.TeamEvent:FireServer('Medium stone grey')
-				Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single['Crude Knife'].ITEMPICKUP)
-				Remotes.TeamEvent:FireServer('Bright blue')
-			end
-			log('[ ✅ ]: Obtained crude knife') 
-		else log('[ ❌ ]: You already obtained a knife') end
+					local function GiveCrudeKnife()
+
+local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+local tools = {"Crude Knife"}
+		for i,v in pairs(tools) do
+	if game.Workspace.Prison_ITEMS.single:FindFirstChild(v) then
+				toolAvailable = v
+			
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Prison_ITEMS.single[v].ITEMPICKUP.CFrame
+	wait()		
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single[v].ITEMPICKUP)
+		wait()
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single[v].ITEMPICKUP)
+		
+					break
+		else continue end
+	end
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentCFrame
+end
+			GiveCrudeKnife()			
 	elseif cmd == 'superknife' or cmd == 'oneshotknife' or cmd == 'supershank' then
 		local obtained
 		if not user.Character:FindFirstChild('Crude Knife') and not user.Backpack:FindFirstChild('Crude Knife') then
 			if team ~= 'Bright blue' then
-				Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single['Crude Knife'].ITEMPICKUP)
+				GiveCrudeKnife()
 			else 
 				Remotes.TeamEvent:FireServer('Medium stone grey')
-				Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single['Crude Knife'].ITEMPICKUP)
+				GiveCrudeKnife()
 				Remotes.TeamEvent:FireServer('Bright blue')
 			end
 			obtained = true
@@ -4015,50 +3993,31 @@ tool5.BinType = "Script"
 			else log('[ ❌ ]: Already disabled super knife') end
 		end
 	elseif cmd == 'hammer' then
-		if args[1] then
-			local plr = getPlr(args[1])
-			if plr then
-				if team ~= 'Bright blue' then
-					Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
-				else 
-					Remotes.TeamEvent:FireServer('Medium stone grey')
-					Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
-					Remotes.TeamEvent:FireServer('Bright blue')
-				end
-				local char = user.Character
-				char.Humanoid.Name = 'fuck'
-				local c = char.fuck:Clone()
-				c.Name = 'Humanoid'
-				c.Parent = char
-				char.fuck:Destroy()
-				workspace.CurrentCamera.CameraSubject = char
-				char.Animate.Disabled = true
-				wait()
-				char.Animate.Disabled = false
-				char.Humanoid.DisplayDistanceType = 'None'
-				local tool = user.Backpack:FindFirstChild('Hammer') or user.Character:FindFirstChild('Hammer')
-				tool.Parent = char
-				repeat
-					goTo(plr)
-					RunService.Heartbeat:Wait()
-				until not plr or tool.Parent ~= user.Character
-				wait(.5)
-				goToCF(position)
-				Remotes.loadchar:InvokeServer()
-				goToCF(position)
-				log('[ ✅ ]: Gave hammer to '..plrName(plr))
-			else log('[ ❌ ]: No player found') end
-		elseif not user.Character:FindFirstChild('Hammer') and not user.Backpack:FindFirstChild('Hammer') then
-			local team = getTeam()
-			if team ~= 'Bright blue' then
-				Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
-			else 
-				Remotes.TeamEvent:FireServer('Medium stone grey')
-				Remotes.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single.Hammer.ITEMPICKUP)
-				Remotes.TeamEvent:FireServer('Bright blue')
-			end
-			log('[ ✅ ]: Obtained a hammer')
-		else log('[ ❌ ]: You already obtained a hammer') end
+		local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+local tools = {"Hammer"}
+		local function GiveHammer()
+
+local CurrentCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+local tools = {"Hammer"}
+		for i,v in pairs(tools) do
+	if game.Workspace.Prison_ITEMS.single:FindFirstChild(v) then
+				toolAvailable = v
+			
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Prison_ITEMS.single[v].ITEMPICKUP.CFrame
+	wait()		
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single[v].ITEMPICKUP)
+		wait()
+			game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.single[v].ITEMPICKUP)
+		
+					break
+		else continue end
+	end
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CurrentCFrame
+end
+	GiveHammer()
 	elseif cmd == 'baseballbat' or cmd == 'bat' then
 		if not user.Character:FindFirstChild('Bat') and not user.Backpack:FindFirstChild('Bat') then
 			local tool = Instance.new('Tool')
