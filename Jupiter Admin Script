@@ -1501,9 +1501,97 @@ end
 		wait()
 		game:GetService("Players").LocalPlayer.Character["Right Leg"]:Destroy()
 	elseif cmd == 'fly' then
-	
+	local States = {}
+
+States.Fly = true
+		States.FlySpeed = tonumber(Arg2) or tonumber(States.FlySpeed) or 5
+		pcall(function()
+			Gyro.P = 0
+			Gyro.MaxTorque = Vector3.new(0, 0, 0)
+			Gyro.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			Velocity.MaxForce = Vector3.new(0, 0, 0)
+			Velocity.Velocity = Vector3.new(0, 0, 0)
+			Gyro:Destroy()
+			Velocity:Destroy()
+			Gyro = nil
+			Velocity = nil
+		end)
+		pcall(function()
+			Gyro = Instance.new("BodyGyro", game.Players.LocalPlayer.Character.HumanoidRootPart)
+			Velocity = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart)
+			Gyro.MaxTorque = Vector3.new(9e4, 9e4, 9e4)
+			Gyro.P = 9e4
+			Gyro.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			Velocity.MaxForce = Vector3.new(9e4, 9e4, 9e4)
+			Velocity.Velocity = Vector3.new(0, 0, 0)
+		end)
+		local controls = {"w","a","s","d","e","q"}
+		local controlsValues = {1, -1, -1, 1, -1, 1}
+		local controlsStats = {w = 0, a = 0, s = 0, d = 0, e = 0, q = 0}
+		game:GetService("RunService").Stepped:Connect(function()
+			if States.Fly then
+				Gyro.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position, workspace.CurrentCamera.CFrame.p) * CFrame.Angles(0, math.rad(180), 0)
+				Velocity.Velocity = ((Gyro.CFrame.lookVector + Vector3.new(0, 0.25, 0)) * (controlsStats["w"] + controlsStats["s"])) + ((Gyro.CFrame * CFrame.new(controlsStats["a"] + controlsStats["d"], controlsStats["e"] + controlsStats["q"], 0).p) - (Gyro.CFrame.p))
+				game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+			end
+		end)
+		game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(key)
+			for i,v in pairs(controls) do
+				if key == v then
+					controlsStats[key] = controlsValues[i] * 25 * States.FlySpeed
+				end
+			end
+		end)
+		game.Players.LocalPlayer:GetMouse().KeyUp:Connect(function(key)
+			for i,v in pairs(controls) do
+				if key == v then
+					controlsStats[key] = controlsValues[i] * 0
+				end
+			end
+		end)
+		game.Players.LocalPlayer.CharacterAdded:Connect(function()
+			if States.Fly then
+				States.Fly = false
+				pcall(function()
+					Gyro.P = 0
+					Gyro.MaxTorque = Vector3.new(0, 0, 0)
+					Gyro.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+					Velocity.MaxForce = Vector3.new(0, 0, 0)
+					Velocity.Velocity = Vector3.new(0, 0, 0)
+					Gyro:Destroy()
+					Velocity:Destroy()
+					Gyro = nil
+					Velocity = nil
+					game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+				end)
+				game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+				pcall(function()
+					Gyro = Instance.new("BodyGyro", game.Players.LocalPlayer.Character.HumanoidRootPart)
+					Velocity = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart)
+					Gyro.MaxTorque = Vector3.new(9e4, 9e4, 9e4)
+					Gyro.P = 9e4
+					Gyro.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+					Velocity.MaxForce = Vector3.new(9e4, 9e4, 9e4)
+					Velocity.Velocity = Vector3.new(0, 0, 0)
+				end)
+				States.Fly = true
+			end
+		end)
 	elseif cmd == 'unfly' then
-	
+	States.Fly = false
+		pcall(function()
+			Gyro.P = 0
+			Gyro.MaxTorque = Vector3.new(0, 0, 0)
+			Gyro.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			Velocity.MaxForce = Vector3.new(0, 0, 0)
+			Velocity.Velocity = Vector3.new(0, 0, 0)
+			Gyro:Destroy()
+			Velocity:Destroy()
+			Gyro = nil
+			Velocity = nil
+			game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+		end)
+	States.Fly = false
 	elseif cmd == 'noclip' then
 	print("working")
 	StatesNoclips = true
