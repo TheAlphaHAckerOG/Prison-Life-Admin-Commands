@@ -1578,6 +1578,7 @@ States.Fly = true
 			end
 		end)
 	elseif cmd == 'unfly' then
+local States = {}
 	States.Fly = false
 		pcall(function()
 			Gyro.P = 0
