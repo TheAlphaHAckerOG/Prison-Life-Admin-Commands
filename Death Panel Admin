@@ -3381,8 +3381,10 @@ plr:GetMouse().Button1Up:Connect(function()
 		if Target and Target.Parent and Target.Parent:FindFirstChildOfClass("Humanoid") and game:GetService("Players"):FindFirstChild(Target.Parent.Name) or game:GetService("Players"):FindFirstChild(Target.Parent.Parent.Name) then
 			local TargetModelPlr = game:GetService("Players"):FindFirstChild(Target.Parent.Name) or game:GetService("Players"):FindFirstChild(Target.Parent.Parent.Name)
 			if States.ClickArrest then
-					local ohInstance1 = Target
-					workspace.Remote.arrest:InvokeServer(ohInstance1)
+					if TargetModelPlr.Team ~= game:GetService("Teams").Guards then
+						local ohInstance1 = Target
+						workspace.Remote.arrest:InvokeServer(ohInstance1)
+				end
 			end
 			if States.ClickKill then
 					kill(TargetModelPlr)
